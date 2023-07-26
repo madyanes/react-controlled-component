@@ -16,6 +16,7 @@ class MyForm extends React.Component {
         this.onNameChangeEventHandler = this.onNameChangeEventHandler.bind(this)
         this.onEmailChangeEventHandler = this.onEmailChangeEventHandler.bind(this)
         this.onGenderChangeEventHandler = this.onGenderChangeEventHandler.bind(this)
+        this.onSubmitEventHandler = this.onSubmitEventHandler.bind(this)
     }
 
     onNameChangeEventHandler(event) {
@@ -42,11 +43,24 @@ class MyForm extends React.Component {
         })
     }
 
+    onSubmitEventHandler(event) {
+        // menghentikan aksi default dari tombol submit
+        event.preventDefault()
+
+        const message = `
+            Name: ${this.state.name}
+            Email: ${this.state.email}
+            Gender: ${this.state.gender}
+        `
+
+        alert(message)
+    }
+
     render() {
         return (
             <div>
                 <h1>Registration Form</h1>
-                <form action="">
+                <form onSubmit={this.onSubmitEventHandler}>
                     <label htmlFor="name">Name: </label>
                     <input type="text" id="name" value={this.state.name} onChange={this.onNameChangeEventHandler} />
                     <br />
